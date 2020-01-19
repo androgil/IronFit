@@ -6,14 +6,15 @@
 
     <color name="primaryDarkColor">#004470</color>
 
-    <color name="secondaryColor">#323c46</color>
+    <color name="secondaryColor">#323C46</color>
 
-    <color name="secondaryLightColor">#5c6671</color>
+    <color name="secondaryLightColor">#5C6671</color>
 
     <color name="secondaryDarkColor">#0c161f</color>
 
-    <color name="primaryTextColor">#ffffff</color>
+    <color name="primaryTextColor">#FFFFFF</color>
 
     <color name="secondaryTextColor">#ffffff</color>
     <color name="colorAccent">#D81B60</color>
+    <color name="wkdRecyclerTectColor">#95989A</color>
 </resources>

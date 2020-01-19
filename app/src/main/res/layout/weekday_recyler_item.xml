@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="80dp"
+    android:layout_height="match_parent"
+    android:background="@color/secondaryColor"
+    android:id="@+id/wkdRecyclerViewItem">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_centerInParent="true"
+        app:cardElevation="3dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:cardBackgroundColor="@color/secondaryColor"
+        android:id="@+id/wkdRecyclerCardView">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/redDot"
+                android:layout_height="8dp"
+                android:layout_width="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_centerHorizontal="true"
+                app:srcCompat="@drawable/red_dot" />
+
+            <TextView
+                android:id="@+id/weekDay"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:fontFamily="@font/roboto_thin"
+                android:textColor="@color/wkdRecyclerTectColor"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:layout_below="@id/redDot"
+                android:layout_centerHorizontal="true"
+                android:gravity="center"
+                tools:text="WKD" />
+
+            <TextView
+                android:id="@+id/wkdDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto_black"
+                android:textColor="@color/wkdRecyclerTectColor"
+                android:textSize="24sp"
+                android:layout_below="@id/weekDay"
+                android:layout_centerHorizontal="true"
+                android:gravity="center"
+                tools:text="23" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/dateSelectedLine"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/wkdDate"
+                android:layout_centerHorizontal="true"
+                app:srcCompat="@drawable/wkd_underscore"
+                />
+
+        </RelativeLayout>
+
+
+    </androidx.cardview.widget.CardView>
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
