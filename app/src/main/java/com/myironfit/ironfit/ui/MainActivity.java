@@ -1,5 +1,6 @@
 package com.myironfit.ironfit.ui;
 
+import android.graphics.Color;
 import android.os.Bundle;
 
 import com.google.android.material.navigation.NavigationView;
@@ -8,17 +9,24 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.myironfit.ironfit.MyCalendar;
 import com.myironfit.ironfit.R;
 import com.myironfit.ironfit.adapters.WeekdayRecyclerViewAdapter;
+import com.myironfit.ironfit.adapters.WkdRecyclerTouchListener;
 import com.myironfit.ironfit.data.myCalendarData;
 
 import java.text.SimpleDateFormat;
@@ -82,7 +90,31 @@ public class MainActivity extends AppCompatActivity
         recyclerView.setLayoutManager(layoutManager);
         WeekdayRecyclerViewAdapter adapter = new WeekdayRecyclerViewAdapter(calendarList, this);
 
+        recyclerView.setItemAnimator(new DefaultItemAnimator());
+
         recyclerView.setAdapter(adapter);
+
+        // Item Click Listener
+        recyclerView.addOnItemTouchListener(new WkdRecyclerTouchListener(getApplicationContext(), recyclerView, new WkdRecyclerTouchListener.ClickListener() {
+            @Override
+            public void onClick(View view, int position) {
+                MyCalendar calendar = calendarList.get(position);
+                TextView childTextView = view.findViewById(R.id.weekDay);
+                ImageView childImageView = view.findViewById(R.id.dateSelectedLine);
+                Animation startRotateAnimation = AnimationUtils.makeInChildBottomAnimation(getApplicationContext());
+                childTextView.startAnimation(startRotateAnimation);
+                childTextView.setTextColor(Color.CYAN);
+                childImageView.setVisibility(View.VISIBLE);
+
+                Toast.makeText(getApplicationContext(), calendar.getDay() + " is selected!", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onLongClick(View view, int position) {
+
+            }
+        }));
+
 
         prepareCalendarData();
 

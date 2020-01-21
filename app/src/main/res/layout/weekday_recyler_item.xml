@@ -3,16 +3,17 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="80dp"
-    android:layout_height="match_parent"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
     android:background="@color/secondaryColor"
     android:id="@+id/wkdRecyclerViewItem">
 
     <androidx.cardview.widget.CardView
-        android:layout_width="80dp"
+        android:layout_width="60dp"
         android:layout_height="80dp"
         android:layout_centerInParent="true"
         app:cardElevation="3dp"
+        app:cardCornerRadius="4dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:cardBackgroundColor="@color/secondaryColor"
@@ -62,8 +63,8 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/wkdDate"
                 android:layout_centerHorizontal="true"
-                app:srcCompat="@drawable/wkd_underscore"
-                />
+                android:visibility="invisible"
+                app:srcCompat="@drawable/wkd_underscore2" />
 
         </RelativeLayout>
 
