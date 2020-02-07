@@ -1,9 +1,9 @@
-package com.myironfit.ironfit;
+package com.myironfit.ironfit.models;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
-public class MyCalendar {
+public class MyWkdyCalendar {
     // storing day - like Sun, Wed etc..,
     // date like 1, 2 etc..
     //Month 1..12
@@ -11,17 +11,21 @@ public class MyCalendar {
 
     private String day;
     private String date, month, year;
-    private int pos;
+    private int pos, txtColor, lineVisible, dotVisible;
 
-    public MyCalendar() {
+    public MyWkdyCalendar() {
     }
 
-    public MyCalendar(String day, String date, String month, String year, int i) {
+    public MyWkdyCalendar(String day, String date, String month, String year, int i, int color, int visible) {
         this.day = day;
         this.date = date;
         this.month = getMonthStr(month);
         this.year = year;
         this.pos =i;
+        this.txtColor = color;
+        this.lineVisible = visible;
+        this.dotVisible = visible;
+
 
     }
     private String getMonthStr(String month){
@@ -35,6 +39,11 @@ public class MyCalendar {
         return month_name;
 
     }
+
+    /**
+     *  ------------ Data Model Functions -----------------
+     */
+
     public int getPos() {
         return pos;
     }
@@ -71,6 +80,31 @@ public class MyCalendar {
     public void setYear(String year) {
         this.year = year;
     }
+
+    /**
+     *  ------------ UI Model Functions -----------------
+     */
+
+    public int getDotVisible(){
+        return dotVisible;
+    }
+
+    public int getTxtColor(){
+        return txtColor;
+    }
+
+    public void setTxtColor(int color){
+        txtColor = color;
+    }
+
+    public int getLnVisible(){
+        return lineVisible;
+    }
+
+    public void setLnVisible(int visible){
+        lineVisible = visible;
+    }
+
 
 
 }

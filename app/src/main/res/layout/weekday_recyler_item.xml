@@ -37,7 +37,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
                 android:fontFamily="@font/roboto_thin"
-                android:textColor="@color/wkdRecyclerTectColor"
+                android:textColor="@color/wkdRecyclerTextColor"
                 android:textSize="14sp"
                 android:textStyle="bold"
                 android:layout_below="@id/redDot"
@@ -50,7 +50,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/roboto_black"
-                android:textColor="@color/wkdRecyclerTectColor"
+                android:textColor="@color/wkdRecyclerTextColor"
                 android:textSize="24sp"
                 android:layout_below="@id/weekDay"
                 android:layout_centerHorizontal="true"
@@ -63,8 +63,8 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/wkdDate"
                 android:layout_centerHorizontal="true"
-                android:visibility="invisible"
-                app:srcCompat="@drawable/wkd_underscore2" />
+                android:visibility="visible"
+                app:srcCompat="@drawable/wkd_underscore" />
 
         </RelativeLayout>
 

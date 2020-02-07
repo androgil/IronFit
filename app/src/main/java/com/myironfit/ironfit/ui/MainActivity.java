@@ -3,30 +3,27 @@ package com.myironfit.ironfit.ui;
 import android.graphics.Color;
 import android.os.Bundle;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.LinearSnapHelper;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.myironfit.ironfit.MyCalendar;
+import com.myironfit.ironfit.models.MyWkdyCalendar;
 import com.myironfit.ironfit.R;
-import com.myironfit.ironfit.adapters.WeekdayRecyclerViewAdapter;
-import com.myironfit.ironfit.adapters.WkdRecyclerTouchListener;
+import com.myironfit.ironfit.adapters.WkdyRecyclerAdapter;
 import com.myironfit.ironfit.data.myCalendarData;
 
 import java.text.SimpleDateFormat;
@@ -36,12 +33,16 @@ import java.util.List;
 import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+        implements NavigationView.OnNavigationItemSelectedListener{
 
     private static final String TAG = "MainActivity";
 
-    private List<MyCalendar> calendarList = new ArrayList<>();
-    private WeekdayRecyclerViewAdapter mWkdAdapter;
+    private List<MyWkdyCalendar> calendarList = new ArrayList<>();
+    private RecyclerView mWkdyRecyclerView;
+    private WkdyRecyclerAdapter mWkdyAdapter;
+    private RecyclerView.LayoutManager mLayoutManager;
+    private LinearSnapHelper snapHelper;
+    private int lastClickedPosition = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,7 +61,14 @@ public class MainActivity extends AppCompatActivity
         TextView weekday = findViewById(R.id.weekdayTextView);
         weekday.setText(date_wd);
 
-        mWkdAdapter = new WeekdayRecyclerViewAdapter(calendarList, this);
+        FloatingActionButton fab = findViewById(R.id.add_session_fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getApplicationContext(),"FAB Pressed", Toast.LENGTH_SHORT).show();
+            }
+        });
+
 
         /**
          * Sidebar or Drawer
@@ -76,35 +84,79 @@ public class MainActivity extends AppCompatActivity
 
 
         initWkdRecyclerView();
+        prepareCalendarData();
     }
 
     /**
-     * Horizontal weekday recycler view initialization
+     *  ---- Select date function for the week day recyclerview ----
+     */
+    public void selectDate(final int position) {
+        int txtSelectColor = Color.parseColor("#519dd0");
+        int visible = 0, invisible = 4;
+
+        /**
+        mWkdyRecyclerView.setItemAnimator(new DefaultItemAnimator());
+        TextView childTextView = mWkdyRecyclerView.findViewHolderForItemId(mWkdyAdapter.getItemId(position)).itemView.findViewById(R.id.weekDay);
+        Animation startRotateAnimation = AnimationUtils.makeInChildBottomAnimation(getApplicationContext());
+        childTextView.startAnimation(startRotateAnimation);
+         */
+
+        if (lastClickedPosition != position) {
+            calendarList.get(position).setTxtColor(txtSelectColor);
+            calendarList.get(position).setLnVisible(visible);
+            calendarList.get(lastClickedPosition).setTxtColor(Color.parseColor("#95989A"));
+            calendarList.get(lastClickedPosition).setLnVisible(invisible);
+
+            mWkdyAdapter.notifyItemChanged(position);
+            mWkdyAdapter.notifyItemChanged(lastClickedPosition);
+        }
+
+        lastClickedPosition = position;
+    }
+
+    /**
+     *  ---- Horizontal weekday recycler view initialization ----
      */
 
     private void initWkdRecyclerView(){
         Log.d(TAG, "initWkdRecyclerView: init recyclerview");
 
-        final LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
-        RecyclerView recyclerView = findViewById(R.id.weekdayRecycler);
-        recyclerView.setLayoutManager(layoutManager);
-        WeekdayRecyclerViewAdapter adapter = new WeekdayRecyclerViewAdapter(calendarList, this);
+        mLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
+        mWkdyRecyclerView = findViewById(R.id.weekdayRecycler);
+        mWkdyRecyclerView.setLayoutManager(mLayoutManager);
+        mWkdyRecyclerView.setHasFixedSize(true);
+        mWkdyAdapter = new WkdyRecyclerAdapter(calendarList, this);
+        snapHelper = new LinearSnapHelper();
+        snapHelper.attachToRecyclerView(mWkdyRecyclerView);
+        //mWkdyRecyclerView.setItemAnimator(new DefaultItemAnimator());
+        mWkdyRecyclerView.setAdapter(mWkdyAdapter);
 
-        recyclerView.setItemAnimator(new DefaultItemAnimator());
+        mWkdyAdapter.setOnClickListener(new WkdyRecyclerAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(int position) {
+                selectDate(position);
+            }
+        });
 
-        recyclerView.setAdapter(adapter);
-
+        /**
         // Item Click Listener
-        recyclerView.addOnItemTouchListener(new WkdRecyclerTouchListener(getApplicationContext(), recyclerView, new WkdRecyclerTouchListener.ClickListener() {
+        mWkdyRecyclerView.addOnItemTouchListener(new WkdRecyclerTouchListener(getApplicationContext(), mWkdyRecyclerView, new WkdRecyclerTouchListener.ClickListener() {
             @Override
             public void onClick(View view, int position) {
-                MyCalendar calendar = calendarList.get(position);
+                MyWkdyCalendar calendar = calendarList.get(position);
+                int pos = position;
                 TextView childTextView = view.findViewById(R.id.weekDay);
                 ImageView childImageView = view.findViewById(R.id.dateSelectedLine);
                 Animation startRotateAnimation = AnimationUtils.makeInChildBottomAnimation(getApplicationContext());
-                childTextView.startAnimation(startRotateAnimation);
-                childTextView.setTextColor(Color.CYAN);
-                childImageView.setVisibility(View.VISIBLE);
+
+
+                if (lastClickedPosition != pos)
+                    childTextView.startAnimation(startRotateAnimation);
+                    childTextView.setTextColor(Color.CYAN);
+                    childImageView.setVisibility(View.VISIBLE);
+                    mWkdyAdapter.notifyItemChanged(lastClickedPosition);
+                    lastClickedPosition = pos;
+
 
                 Toast.makeText(getApplicationContext(), calendar.getDay() + " is selected!", Toast.LENGTH_SHORT).show();
             }
@@ -114,14 +166,13 @@ public class MainActivity extends AppCompatActivity
 
             }
         }));
-
-
-        prepareCalendarData();
+         */
 
     }
 
+
     /**
-     * Prepares sample data to provide data set to adapter
+     *  ---- Prepares sample data to provide data set to adapter ----
      */
     private void prepareCalendarData() {
 
@@ -132,8 +183,8 @@ public class MainActivity extends AppCompatActivity
         myCalendarData m_calendar = new myCalendarData(-2);
 
         for ( int i=0; i <30; i++) {
-
-            MyCalendar calendar = new MyCalendar(m_calendar.getWeekDay(), String.valueOf(m_calendar.getDay()), String.valueOf(m_calendar.getMonth()), String.valueOf(m_calendar.getYear()),i);
+            int txtColor = Color.parseColor("#95989A");
+            MyWkdyCalendar calendar = new MyWkdyCalendar(m_calendar.getWeekDay(), String.valueOf(m_calendar.getDay()), String.valueOf(m_calendar.getMonth()), String.valueOf(m_calendar.getYear()),i, txtColor, 4);
             m_calendar.getNextWeekDay(1);
 
             calendarList.add(calendar);
@@ -143,8 +194,14 @@ public class MainActivity extends AppCompatActivity
         // notify adapter about data set changes
         // so that it will render the list with new data
 
-        mWkdAdapter.notifyDataSetChanged();
+        mWkdyAdapter.notifyDataSetChanged();
     }
+
+    /***
+     *    ---- Floating Action Button ----
+     */
+
+
 
     @Override
     public void onBackPressed() {

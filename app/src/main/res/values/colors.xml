@@ -14,7 +14,13 @@
 
     <color name="primaryTextColor">#FFFFFF</color>
 
-    <color name="secondaryTextColor">#ffffff</color>
+    <color name="secondaryTextColor">#223B49</color>
+
+    <color name="allertTextColor">#CA6363</color>
+
     <color name="colorAccent">#D81B60</color>
-    <color name="wkdRecyclerTectColor">#95989A</color>
+
+    <color name="wkdRecyclerTextColor">#95989A</color>
+
+    <color name="lightCards">#FFFFFF</color>
 </resources>

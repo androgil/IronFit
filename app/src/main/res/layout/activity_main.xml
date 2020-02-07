@@ -6,13 +6,16 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:openDrawer="start">
+    tools:openDrawer="start"
+    android:padding="6dp"
+    android:clipToPadding="false">
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/primaryColor">
+        android:background="@color/primaryColor"
+        android:clipToPadding="false">
 
 
         <com.google.android.material.appbar.AppBarLayout
@@ -22,14 +25,17 @@
             android:theme="@style/AppTheme.AppBarOverlay"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toTopOf="parent"
+            app:elevation="4dp"
+            android:clipToPadding="false">
 
             <androidx.appcompat.widget.Toolbar
                 android:id="@+id/main_toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 android:background="@color/secondaryColor"
-                android:elevation="4dp" />
+                android:elevation="4dp"
+                android:clipToPadding="false"/>
 
         </com.google.android.material.appbar.AppBarLayout>
 
@@ -44,23 +50,8 @@
             android:visibility="visible"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/appBarLayout">
+            app:layout_constraintTop_toBottomOf="@id/appBarLayout" />
 
-
-        </ImageView>
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/weekdayRecycler"
-            android:layout_width="match_parent"
-            android:layout_height="125dp"
-            android:layout_marginTop="200dp"
-            android:background="@color/secondaryColor"
-            android:elevation="2dp"
-            android:orientation="horizontal"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/appBarLayout"
-             />
 
         <TextView
             android:id="@+id/dateTextView"
@@ -88,6 +79,164 @@
             app:layout_constraintBottom_toTopOf="@+id/dateTextView"
             app:layout_constraintStart_toStartOf="parent"
             tools:text="Day of Week" />
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/weekdayRecycler"
+            android:layout_width="match_parent"
+            android:layout_height="125dp"
+            android:layout_marginTop="200dp"
+            android:background="@color/secondaryColor"
+            android:elevation="2dp"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/appBarLayout"
+             />
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cvDailySchedule"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_marginStart="@dimen/card_side_margin"
+            android:layout_marginTop="85dp"
+            android:layout_marginEnd="@dimen/card_side_margin"
+            android:clipToPadding="false"
+            android:padding="@dimen/card_padding"
+            app:cardBackgroundColor="@color/lightCards"
+            app:cardCornerRadius="@dimen/card_corner_radius"
+            app:cardElevation="6dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/weekdayRecycler">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/iv_schedule_image"
+                    android:layout_width="76dp"
+                    android:layout_height="76dp"
+                    android:layout_marginStart="260dp"
+                    android:rotation="45"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/todays_schedule" />
+
+                <TextView
+                    android:id="@+id/tv_training_schedule"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="8dp"
+                    android:fontFamily="@font/roboto_medium"
+                    android:text="@string/schedule_cap"
+                    android:textColor="@color/secondaryTextColor"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                    android:id="@+id/iv_divide_line"
+                    android:layout_width="760dp"
+                    android:layout_height="20dp"
+                    android:layout_marginBottom="34dp"
+                    android:contentDescription="@string/divide"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/divide_line" />
+
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:id="@+id/add_session_fab"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="38dp"
+                    android:backgroundTint="#036F9F"
+                    android:elevation="6dp"
+                    android:src="@drawable/add_session"
+                    app:borderWidth="0dp"
+                    app:fabSize="auto"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:maxImageSize="40dp"
+                    app:pressedTranslationZ="8dp"
+                    app:rippleColor="#74899C" />
+
+                <TextView
+                    android:id="@+id/tv_todays_session"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="16dp"
+                    android:elevation="6dp"
+                    android:fontFamily="@font/roboto_black"
+                    android:text="@string/todays_schedule"
+                    android:textColor="@color/allertTextColor"
+                    android:textSize="24sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/add_session_fab"
+                    app:layout_constraintTop_toBottomOf="@+id/iv_divide_line"
+                    tools:text="No Scheduled Session" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.cardview.widget.CardView>
+
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cvRecentHistory"
+            android:layout_width="match_parent"
+            android:layout_height="440dp"
+            android:layout_marginStart="@dimen/card_side_margin"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="@dimen/card_side_margin"
+            android:clipToPadding="false"
+            android:padding="@dimen/card_padding"
+            app:cardBackgroundColor="@color/lightCards"
+            app:cardCornerRadius="@dimen/card_corner_radius"
+            app:cardElevation="6dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cvDailySchedule">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/tv_recent_history"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="8dp"
+                    android:fontFamily="@font/roboto_medium"
+                    android:text="@string/rec_history"
+                    android:textColor="@color/secondaryTextColor"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                    android:id="@+id/iv_history_line"
+                    android:layout_width="760dp"
+                    android:layout_height="20dp"
+                    android:layout_marginTop="24dp"
+                    android:contentDescription="@string/divide"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/divide_line" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.cardview.widget.CardView>
+
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
