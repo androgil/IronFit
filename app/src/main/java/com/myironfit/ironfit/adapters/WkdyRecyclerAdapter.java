@@ -30,7 +30,7 @@ public class WkdyRecyclerAdapter extends RecyclerView.Adapter<WkdyRecyclerAdapte
      *   Click Listenters Interfaces
      */
     public interface OnItemClickListener{
-        void onItemClick(int position);
+        void onItemClick(int position, View v);
     }
 
     public void setOnClickListener (OnItemClickListener listener) {
@@ -64,7 +64,7 @@ public class WkdyRecyclerAdapter extends RecyclerView.Adapter<WkdyRecyclerAdapte
                     if(listener != null){
                         int position = getAdapterPosition();
                         if (position != RecyclerView.NO_POSITION){
-                            listener.onItemClick(position);
+                            listener.onItemClick(position, view);
                         }
                     }
                 }
@@ -102,6 +102,7 @@ public class WkdyRecyclerAdapter extends RecyclerView.Adapter<WkdyRecyclerAdapte
         MyWkdyCalendar calendar = mCalendar.get(position);
         holder.redDot.setVisibility(calendar.getDotVisible());
         holder.wkdDate.setText(calendar.getDate());
+        holder.wkdDate.setTextColor(calendar.getTxtColor());
         holder.weekDay.setText(calendar.getDay());
         holder.weekDay.setTextColor(calendar.getTxtColor());
         holder.dateSelectedLine.setVisibility(calendar.getLnVisible());

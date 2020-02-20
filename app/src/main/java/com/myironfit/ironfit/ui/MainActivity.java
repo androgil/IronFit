@@ -21,10 +21,12 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.myironfit.ironfit.adapters.RecentHistoryAdapter;
 import com.myironfit.ironfit.models.MyWkdyCalendar;
 import com.myironfit.ironfit.R;
 import com.myironfit.ironfit.adapters.WkdyRecyclerAdapter;
 import com.myironfit.ironfit.data.myCalendarData;
+import com.myironfit.ironfit.models.RecentHistory;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -43,6 +45,12 @@ public class MainActivity extends AppCompatActivity
     private RecyclerView.LayoutManager mLayoutManager;
     private LinearSnapHelper snapHelper;
     private int lastClickedPosition = 0;
+
+    private List<RecentHistory> historyList = new ArrayList<>();
+    private RecyclerView mRecentHistoryRecycler;
+    private RecentHistoryAdapter mHistoryAdapter;
+    private RecyclerView.LayoutManager hLayoutManager;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -85,13 +93,16 @@ public class MainActivity extends AppCompatActivity
 
         initWkdRecyclerView();
         prepareCalendarData();
+
+        initRecHistRecyclerView();
+        prepareHistory();
     }
 
     /**
      *  ---- Select date function for the week day recyclerview ----
      */
     public void selectDate(final int position) {
-        int txtSelectColor = Color.parseColor("#519dd0");
+        int txtSelectColor = Color.parseColor("#0CAADC");
         int visible = 0, invisible = 4;
 
         /**
@@ -114,6 +125,21 @@ public class MainActivity extends AppCompatActivity
         lastClickedPosition = position;
     }
 
+
+    /**
+     *  ---- Scroll to center function for the week day recyclerview  ----
+     */
+    public void scrollToCenter(View v){
+        int itemToScroll = mWkdyRecyclerView.getChildLayoutPosition(v);
+        int centerOfScreen = mWkdyRecyclerView.getWidth() / 2 - v.getWidth() / 2;
+
+        if(itemToScroll < 3) {
+            mLayoutManager.scrollToPosition(itemToScroll -3);
+        }
+
+    }
+
+
     /**
      *  ---- Horizontal weekday recycler view initialization ----
      */
@@ -133,8 +159,9 @@ public class MainActivity extends AppCompatActivity
 
         mWkdyAdapter.setOnClickListener(new WkdyRecyclerAdapter.OnItemClickListener() {
             @Override
-            public void onItemClick(int position) {
+            public void onItemClick(int position, View v) {
                 selectDate(position);
+                scrollToCenter(v);
             }
         });
 
@@ -170,6 +197,53 @@ public class MainActivity extends AppCompatActivity
 
     }
 
+    /**
+     *  ---- Recent History Recycler view initialization ----
+     */
+
+    private void initRecHistRecyclerView(){
+        Log.d(TAG, "initRecHistRecyclerView: init recyclerview");
+
+        hLayoutManager = new LinearLayoutManager(this);
+        mRecentHistoryRecycler = findViewById(R.id.recentHistoryRecycler);
+        mRecentHistoryRecycler.setLayoutManager(hLayoutManager);
+        mRecentHistoryRecycler.setHasFixedSize(true);
+        mHistoryAdapter = new RecentHistoryAdapter(historyList, this);
+        mRecentHistoryRecycler.setAdapter(mHistoryAdapter);
+
+
+        /**
+         // Item Click Listener
+         mWkdyRecyclerView.addOnItemTouchListener(new WkdRecyclerTouchListener(getApplicationContext(), mWkdyRecyclerView, new WkdRecyclerTouchListener.ClickListener() {
+        @Override
+        public void onClick(View view, int position) {
+        MyWkdyCalendar calendar = calendarList.get(position);
+        int pos = position;
+        TextView childTextView = view.findViewById(R.id.weekDay);
+        ImageView childImageView = view.findViewById(R.id.dateSelectedLine);
+        Animation startRotateAnimation = AnimationUtils.makeInChildBottomAnimation(getApplicationContext());
+
+
+        if (lastClickedPosition != pos)
+        childTextView.startAnimation(startRotateAnimation);
+        childTextView.setTextColor(Color.CYAN);
+        childImageView.setVisibility(View.VISIBLE);
+        mWkdyAdapter.notifyItemChanged(lastClickedPosition);
+        lastClickedPosition = pos;
+
+
+        Toast.makeText(getApplicationContext(), calendar.getDay() + " is selected!", Toast.LENGTH_SHORT).show();
+        }
+
+        @Override
+        public void onLongClick(View view, int position) {
+
+        }
+        }));
+         */
+
+    }
+
 
     /**
      *  ---- Prepares sample data to provide data set to adapter ----
@@ -180,7 +254,7 @@ public class MainActivity extends AppCompatActivity
         // initialize mycalendarData and get Instance
         // getnext to get next set of date etc.. which can be used to populate MyCalendarList in for loop
 
-        myCalendarData m_calendar = new myCalendarData(-2);
+        myCalendarData m_calendar = new myCalendarData(-3);
 
         for ( int i=0; i <30; i++) {
             int txtColor = Color.parseColor("#95989A");
@@ -195,6 +269,20 @@ public class MainActivity extends AppCompatActivity
         // so that it will render the list with new data
 
         mWkdyAdapter.notifyDataSetChanged();
+    }
+
+    /**
+     *   ---- Insert fake history data ----
+     */
+    private void prepareHistory(){
+
+        for (int i=0; i < 10; i++){
+            RecentHistory history = new RecentHistory("Wed", "22", "Feb", "Chest & Shoulders", "Chest, Deltoids, Triceps", "12 Exercises", "2:13:21" );
+            historyList.add(history);
+        }
+
+        mHistoryAdapter.notifyDataSetChanged();
+
     }
 
     /***

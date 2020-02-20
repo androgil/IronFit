@@ -6,9 +6,44 @@
     <string name="nav_header_subtitle">android.studio@android.com</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
-    <string name="gympic">gympic</string>
     <string name="schedule_cap">TRAINING SCHEDULE</string>
     <string name="rec_history">RECENT HISTORY</string>
-    <string name="divide">dived line</string>
+    <string name="planned_training">PLANNED TRAINING SUMMARY</string>
     <string name="todays_schedule">No Scheduled Training</string>
+    <string name="exercises">Exercises</string>
+    <string name="no_history">No Training History</string>
+
+
+    <!--  Fake data history recycler  -->
+    <string name="history_recycler_date">Tuesday, Feb. 11</string>
+    <string name="history_recycler_name">Chest and Shoulders</string>
+    <string name="history_recycler_muscles">Chest, Delts, Triceps</string>
+    <string name="history_recycler_sets">6 Exercises, 36 Sets</string>
+
+    <!-- image descriptions  -->
+    <string name="history_image">History Image</string>
+    <string name="gympic">gympic</string>
+    <string name="divide">dived line</string>
+    <string name="iv_training_summary">Training Summary image</string>
+
+    <!--  Dummy planned training summary data  -->
+    <string name="session">Chest and Shoulders</string>
+    <string name="training_summary">Training Summary   //   Thursday Feb. 24th</string>
+    <string name="ts_exercises">Exercises</string>
+    <string name="ts_sets">Sets</string>
+    <string name="ts_reps">Total Reps</string>
+    <string name="ts_cardio">Cardio</string>
+    <string name="ts_muscles">MUSCLES</string>
+    <string name="ts_exercise_cap">EXERCISES</string>
+
+    <!--  Names of exercises -->
+    <string name="incline_dumbell_press">Incline Dumbell Pres</string>
+    <string name="machine_dips">Machine Dips</string>
+    <string name="peck_deck">Peck Deck</string>
+    <string name="decline_dumbell_press">Decline Dembell Press</string>
+    <string name="f_lateral_raises">Front Lateral Raises</string>
+    <string name="r_lateral_raises">Rear Lateral Raises</string>
+    <string name="s_lateral_raises">Side Lateral Raises</string>
+    <string name="arnold_press">Arnold Press</string>
+
 </resources>

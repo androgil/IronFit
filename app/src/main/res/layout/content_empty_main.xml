@@ -7,7 +7,7 @@
     android:background="@color/primaryColor"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".ui.MainActivity"
-    tools:showIn="@layout/app_bar_main">
+    tools:showIn="@layout/main_toolbar">
 
     <TextView
         android:layout_width="wrap_content"

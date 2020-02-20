@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cv_training_history"
+    android:layout_width="match_parent"
+    android:layout_height="80dp"
+    android:layout_marginTop="8dp"
+    android:layout_marginBottom="8dp"
+    android:layout_marginStart="16dp"
+    android:layout_marginEnd="8dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cv_history_recycler_box"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="4dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:cardBackgroundColor="@color/secondaryColor">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="6dp"
+                android:orientation="vertical"
+                android:layout_gravity="center_horizontal"
+                android:gravity="center_horizontal">
+
+                <TextView
+                    android:id="@+id/tv_history_recycler_day"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto_thin"
+                    android:textColor="@color/primaryLightColor"
+                    android:textSize="12sp"
+                    tools:text="Tuesday" />
+
+                <TextView
+                    android:id="@+id/tv_history_recycler_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto_black"
+                    android:textColor="@color/primaryLightColor"
+                    android:textSize="14sp"
+                    tools:text="12" />
+
+                <TextView
+                    android:id="@+id/tv_history_recycler_month"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto_medium"
+                    android:textColor="@color/primaryLightColor"
+                    android:textSize="12sp"
+                    tools:text="Feb" />
+
+            </LinearLayout>
+
+
+        </androidx.cardview.widget.CardView>
+
+
+        <TextView
+            android:id="@+id/tv_history_recycler_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="8dp"
+            android:fontFamily="@font/roboto_black"
+            android:textColor="@color/darkTextColor"
+            android:textSize="18sp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toEndOf="@id/cv_history_recycler_box"
+            tools:text="Chest and Delts" />
+
+        <TextView
+            android:id="@+id/tv_history_recycler_muscles"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginBottom="4dp"
+            android:fontFamily="@font/roboto_medium"
+            android:textColor="@color/blueAccent"
+            app:layout_constraintStart_toEndOf="@id/cv_history_recycler_box"
+            app:layout_constraintBottom_toBottomOf="@id/cv_history_recycler_box"
+            tools:text="Chest, Delts, Triceps" />
+
+        <ImageView
+            android:id="@+id/iv_history_recycler_exercises"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginEnd="8dp"
+            android:contentDescription="@string/exercises"
+            android:src="@drawable/ic_weightlifting"
+            app:layout_constraintBottom_toBottomOf="@id/tv_history_recycler_name"
+            app:layout_constraintEnd_toStartOf="@id/tv_history_recycler_numexercises" />
+
+        <TextView
+            android:id="@+id/tv_history_recycler_numexercises"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:fontFamily="@font/roboto_thin"
+            android:textColor="@color/secondaryTextColor"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="@id/iv_history_recycler_exercises"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:text="8 Exercises" />
+
+        <ImageView
+            android:id="@+id/iv_history_recycler_clock"
+            android:layout_width="18dp"
+            android:layout_height="18dp"
+            android:layout_marginEnd="16dp"
+            android:contentDescription="@string/exercises"
+            android:src="@drawable/ic_clock"
+            app:layout_constraintBottom_toBottomOf="@id/tv_history_recycler_muscles"
+            app:layout_constraintEnd_toStartOf="@id/tv_history_recycler_duration" />
+
+        <TextView
+            android:id="@+id/tv_history_recycler_duration"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:fontFamily="@font/roboto_thin"
+            android:textColor="@color/secondaryTextColor"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="@id/tv_history_recycler_muscles"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:text="Duration 2:15:45" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
