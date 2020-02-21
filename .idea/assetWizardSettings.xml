@@ -24,6 +24,7 @@
                                             <option name="values">
                                               <map>
                                                 <entry key="color" value="000000" />
+                                                <entry key="opacityPercent" value="60" />
                                               </map>
                                             </option>
                                           </PersistentState>
@@ -36,6 +37,19 @@
                                               <map>
                                                 <entry key="color" value="000000" />
                                                 <entry key="opacityPercent" value="80" />
+                                                <entry key="trimmed" value="true" />
+                                              </map>
+                                            </option>
+                                          </PersistentState>
+                                        </value>
+                                      </entry>
+                                      <entry key="text">
+                                        <value>
+                                          <PersistentState>
+                                            <option name="values">
+                                              <map>
+                                                <entry key="color" value="000000" />
+                                                <entry key="opacityPercent" value="60" />
                                               </map>
                                             </option>
                                           </PersistentState>
@@ -46,10 +60,10 @@
                                   <option name="values">
                                     <map>
                                       <entry key="assetType" value="IMAGE" />
-                                      <entry key="imageAsset" value="$USER_HOME$/Downloads/IronFit/ic_action_icon_1024.png" />
-                                      <entry key="outputName" value="add_session" />
+                                      <entry key="imageAsset" value="$USER_HOME$/Downloads/scaleLight.png" />
+                                      <entry key="outputName" value="scale_light" />
                                       <entry key="theme" value="HOLO_DARK" />
-                                      <entry key="themeColor" value="ffffff" />
+                                      <entry key="themeColor" value="a8c023" />
                                     </map>
                                   </option>
                                 </PersistentState>
@@ -103,7 +117,6 @@
                                       <entry key="backgroundImage" value="$USER_HOME$/Downloads/IronFit/icon_1024.png" />
                                       <entry key="foregroundImage" value="$USER_HOME$/Downloads/IronFit/ic_action_icon_1024.png" />
                                       <entry key="outputName" value="addtrainingfab" />
-                                      <entry key="previewDensity" value="XXHIGH" />
                                     </map>
                                   </option>
                                 </PersistentState>
@@ -181,7 +194,7 @@
                                 <PersistentState>
                                   <option name="values">
                                     <map>
-                                      <entry key="url" value="jar:file:/home/ericgilmore/AndroidStudio/plugins/android/lib/android.jar!/images/material_design_icons/notification/ic_event_note_black_24dp.xml" />
+                                      <entry key="url" value="jar:file:/home/ericgilmore/AndroidStudio/plugins/android/lib/android.jar!/images/material_design_icons/editor/ic_insert_chart_black_24dp.xml" />
                                     </map>
                                   </option>
                                 </PersistentState>
@@ -192,7 +205,7 @@
                         <option name="values">
                           <map>
                             <entry key="color" value="323c46" />
-                            <entry key="outputName" value="ic_training_summary" />
+                            <entry key="outputName" value="ic_statistics" />
                             <entry key="sourceFile" value="$USER_HOME$/Downloads/clock.svg" />
                           </map>
                         </option>

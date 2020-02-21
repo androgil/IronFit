@@ -441,7 +441,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/roboto_medium"
-                    android:text="@string/ts_exercises"
+                    android:text="@string/exercises"
                     android:textColor="@color/darkTextColor"
                     app:layout_constraintEnd_toEndOf="@id/v_divide_line1"
                     app:layout_constraintStart_toStartOf="parent"
@@ -476,7 +476,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/roboto_medium"
-                    android:text="@string/ts_sets"
+                    android:text="@string/sets"
                     android:textColor="@color/darkTextColor"
                     app:layout_constraintEnd_toEndOf="@id/v_divide_line2"
                     app:layout_constraintStart_toStartOf="@id/v_divide_line1"
@@ -511,7 +511,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/roboto_medium"
-                    android:text="@string/ts_reps"
+                    android:text="@string/total_reps"
                     android:textColor="@color/darkTextColor"
                     app:layout_constraintEnd_toEndOf="@id/v_divide_line3"
                     app:layout_constraintStart_toStartOf="@id/v_divide_line2"
@@ -548,34 +548,72 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/roboto_medium"
-                    android:text="@string/ts_cardio"
+                    android:text="@string/cardio"
                     android:textColor="@color/darkTextColor"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="@id/v_divide_line3"
                     app:layout_constraintTop_toBottomOf="@id/tv_num_cardio" />
 
+                <!--  Begin big divider/header  -->
 
-                <ImageView
-                    android:id="@+id/iv_ts_exerciseicon"
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:src="@drawable/ic_weightlifting"
-                    android:layout_marginStart="2dp"
-                    android:layout_marginTop="12dp"
-                    app:layout_constraintStart_toStartOf="@id/tv_ts_exercises"
+                <View
+                    android:id="@+id/v_big_divider"
+                    android:layout_width="match_parent"
+                    android:layout_height="26dp"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginRight="12dp"
+                    android:layout_marginLeft="12dp"
+                    android:background="@color/secondaryColor"
+                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/v_divide_line1"/>
 
-                <TextView
-                    android:id="@+id/tv_ts_exercise_header"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:fontFamily="@font/roboto_medium"
-                    android:text="@string/ts_exercise_cap"
-                    android:textColor="@color/secondaryLightColor"
-                    android:textSize="18sp"
-                    app:layout_constraintBottom_toBottomOf="@id/iv_ts_exerciseicon"
-                    app:layout_constraintStart_toEndOf="@id/iv_ts_exerciseicon" />
+                    <ImageView
+                        android:id="@+id/iv_ts_exercise_list"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:src="@drawable/ic_exercise_list"
+                        android:tint="@color/wkdRecyclerTextColor"
+                        android:layout_marginStart="2dp"
+                        android:layout_marginTop="1dp"
+                        app:layout_constraintStart_toStartOf="@id/tv_ts_exercises"
+                        app:layout_constraintTop_toTopOf="@id/v_big_divider"/>
+
+                    <TextView
+                        android:id="@+id/tv_ts_exercise_header"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:fontFamily="@font/roboto_medium"
+                        android:text="@string/exercises_cap"
+                        android:textColor="@color/wkdRecyclerTextColor"
+                        android:textSize="18sp"
+                        app:layout_constraintBottom_toBottomOf="@id/iv_ts_exercise_list"
+                        app:layout_constraintStart_toEndOf="@id/iv_ts_exercise_list" />
+
+                    <ImageView
+                        android:id="@+id/iv_ts_muscles_list"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:src="@drawable/ic_target_muscles"
+                        android:tint="@color/wkdRecyclerTextColor"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="1dp"
+                        app:layout_constraintStart_toStartOf="@id/v_divide_line2"
+                        app:layout_constraintTop_toTopOf="@id/v_big_divider"/>
+
+                    <TextView
+                        android:id="@+id/tv_ts_muscles_header"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:fontFamily="@font/roboto_medium"
+                        android:text="@string/muscles_cap"
+                        android:textColor="@color/wkdRecyclerTextColor"
+                        android:textSize="18sp"
+                        app:layout_constraintBottom_toBottomOf="@id/iv_ts_exercise_list"
+                        app:layout_constraintStart_toEndOf="@id/iv_ts_muscles_list" />
+
+                    <!-- End bid divider/header  -->
 
                 <TextView
                     android:id="@+id/tv_exercise_list1"
@@ -583,7 +621,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
                     android:fontFamily="@font/roboto_medium"
-                    android:text="@string/incline_dumbell_press"
+                    android:text="@string/incline_dumbbell_press"
                     android:textColor="@color/primaryLightColor"
                     app:layout_constraintStart_toStartOf="@id/tv_ts_exercise_header"
                     app:layout_constraintTop_toBottomOf="@id/tv_ts_exercise_header" />
@@ -605,7 +643,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="2dp"
                     android:fontFamily="@font/roboto_medium"
-                    android:text="@string/decline_dumbell_press"
+                    android:text="@string/decline_dumbbell_press"
                     android:textColor="@color/primaryLightColor"
                     app:layout_constraintStart_toStartOf="@id/tv_ts_exercise_header"
                     app:layout_constraintTop_toBottomOf="@id/tv_exercise_list2" />
@@ -631,6 +669,28 @@
                     android:textColor="@color/primaryLightColor"
                     app:layout_constraintStart_toStartOf="@id/tv_ts_exercise_header"
                     app:layout_constraintTop_toBottomOf="@id/tv_exercise_list4" />
+
+                <TextView
+                    android:id="@+id/tv_muscle_list1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:fontFamily="@font/roboto_medium"
+                    android:text="@string/incline_dumbbell_press"
+                    android:textColor="@color/primaryLightColor"
+                    app:layout_constraintStart_toStartOf="@id/tv_ts_muscles_header"
+                    app:layout_constraintTop_toBottomOf="@id/tv_ts_muscles_header" />
+
+                <TextView
+                    android:id="@+id/tv_muscle_list2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:fontFamily="@font/roboto_medium"
+                    android:text="@string/machine_dips"
+                    android:textColor="@color/primaryLightColor"
+                    app:layout_constraintStart_toStartOf="@id/tv_ts_muscles_header"
+                    app:layout_constraintTop_toBottomOf="@id/tv_muscle_list1" />
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>

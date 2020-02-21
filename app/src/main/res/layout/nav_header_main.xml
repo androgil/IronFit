@@ -13,15 +13,100 @@
     android:paddingBottom="0dp"
     android:theme="@style/ThemeOverlay.AppCompat.Dark">
 
+    <!-- Begin header for navigation drawer -->
+
     <ImageView
         android:id="@+id/imageView2"
         android:layout_width="0dp"
         android:layout_height="200dp"
-
         android:background="@drawable/nav_header"
+        android:contentDescription="@string/nav_header_image"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/nav_header_usericon"
+        android:layout_width="62dp"
+        android:layout_height="62dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="36dp"
+        android:contentDescription="@string/user_icon"
+        android:src="@drawable/user_icon"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/nav_header_username"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="2dp"
+        android:layout_marginTop="4dp"
+        android:fontFamily="@font/roboto_medium"
+        android:text="@string/nav_user_name"
+        android:textColor="@color/primaryTextColor"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="@id/nav_header_usericon"
+        app:layout_constraintTop_toBottomOf="@id/nav_header_usericon"
+        tools:text="User Name" />
+
+    <ImageView
+        android:id="@+id/nav_header_scaleicon"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_marginTop="2dp"
+        android:layout_marginEnd="16dp"
+        android:backgroundTint="@color/lightCards"
+        android:contentDescription="@string/scale"
+        android:foregroundTint="@color/lightCards"
+        android:src="@drawable/scale_light"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/nav_header_usericon" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/roboto_medium"
+        android:text="@string/body_weight"
+        android:textColor="@color/primaryTextColor"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintBottom_toBottomOf="@id/nav_header_scaleicon"
+        app:layout_constraintEnd_toStartOf="@id/nav_header_scaleicon"
+        tools:text="215 lbs" />
+
+    <ImageView
+        android:id="@+id/nav_header_bodyfaticon"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:backgroundTint="@color/lightCards"
+        android:contentDescription="@string/bodyfaticon"
+        android:foregroundTint="@color/lightCards"
+        android:src="@drawable/bodyfaticon_light"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/nav_header_scaleicon" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/roboto_medium"
+        android:text="@string/fat_percent"
+        android:textColor="@color/primaryTextColor"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintBottom_toBottomOf="@id/nav_header_bodyfaticon"
+        app:layout_constraintEnd_toStartOf="@id/nav_header_bodyfaticon"
+        tools:text="15.2 %" />
+
+    <!-- End header for navigation drawer -->
+
+    <ImageView
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:src="@drawable/ic_home"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/imageView2"/>
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

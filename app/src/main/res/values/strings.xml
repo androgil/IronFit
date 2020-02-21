@@ -11,6 +11,16 @@
     <string name="planned_training">PLANNED TRAINING SUMMARY</string>
     <string name="todays_schedule">No Scheduled Training</string>
     <string name="exercises">Exercises</string>
+    <string name="exercises_cap">EXERCISES</string>
+    <string name="muscles">Muscles</string>
+    <string name="muscles_cap">MUSCLES</string>
+    <string name="cardio">Cardio</string>
+    <string name="cardio_cap">CARDIO</string>
+    <string name="sets">Sets</string>
+    <string name="sets_cap">SETS</string>
+    <string name="reps">Reps</string>
+    <string name="reps_cap">REPS</string>
+    <string name="total_reps">Total Reps</string>
     <string name="no_history">No Training History</string>
 
 
@@ -25,22 +35,38 @@
     <string name="gympic">gympic</string>
     <string name="divide">dived line</string>
     <string name="iv_training_summary">Training Summary image</string>
+    <string name="nav_header_image">Navigation Header</string>
+    <string name="user_icon">User Icon</string>
+    <string name="scale">Scale</string>
+    <string name="bodyfaticon">Body Fat Icon</string>
 
-    <!--  Dummy planned training summary data  -->
+    <!--  Dummy and temp strings to be deleted  -->
     <string name="session">Chest and Shoulders</string>
     <string name="training_summary">Training Summary   //   Thursday Feb. 24th</string>
-    <string name="ts_exercises">Exercises</string>
-    <string name="ts_sets">Sets</string>
-    <string name="ts_reps">Total Reps</string>
-    <string name="ts_cardio">Cardio</string>
-    <string name="ts_muscles">MUSCLES</string>
-    <string name="ts_exercise_cap">EXERCISES</string>
+    <string name="nav_user_name">Eric Gilmore</string>
+    <string name="body_weight">215 lbs</string>
+    <string name="fat_percent">15.2 %</string>
+
+    <!---  Muscle names  -->
+    <string name="chest">Chest</string>
+    <string name="chest_cap">CHEST</string>
+    <string name="back">Back</string>
+    <string name="back_cap">BACK</string>
+    <string name="deltoids">Deltoids</string>
+    <string name="deltoids_cap">DELTOIDS</string>
+    <string name="triceps">Triceps</string>
+    <string name="triceps_cap">TRICEPS</string>
+    <string name="biceps">Biceps</string>
+    <string name="biceps_cap">BICEPS</string>
+    <string name="legs">Legs</string>
+    <string name="legs_cap">LEGS</string>
+
 
     <!--  Names of exercises -->
-    <string name="incline_dumbell_press">Incline Dumbell Pres</string>
+    <string name="incline_dumbbell_press">Incline Dumbbell Press</string>
     <string name="machine_dips">Machine Dips</string>
     <string name="peck_deck">Peck Deck</string>
-    <string name="decline_dumbell_press">Decline Dembell Press</string>
+    <string name="decline_dumbbell_press">Decline Dumbbell Press</string>
     <string name="f_lateral_raises">Front Lateral Raises</string>
     <string name="r_lateral_raises">Rear Lateral Raises</string>
     <string name="s_lateral_raises">Side Lateral Raises</string>
