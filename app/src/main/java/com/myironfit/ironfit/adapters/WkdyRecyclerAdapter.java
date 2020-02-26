@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.myironfit.ironfit.models.MyWkdyCalendar;
 import com.myironfit.ironfit.R;
+import com.myironfit.ironfit.ui.MainFragment;
 
 import java.util.List;
 
@@ -22,7 +23,7 @@ public class WkdyRecyclerAdapter extends RecyclerView.Adapter<WkdyRecyclerAdapte
     private static final String TAG = "WkdRecyclerViewAdapter";
 
     private List<MyWkdyCalendar> mCalendar;
-    private Context mContext;
+    private MainFragment mContext;
     private OnItemClickListener mListener;
 
 
@@ -76,7 +77,7 @@ public class WkdyRecyclerAdapter extends RecyclerView.Adapter<WkdyRecyclerAdapte
     /**
      *  ---- RECYCLERVIEW ADAPTER ----
      */
-    public WkdyRecyclerAdapter(List<MyWkdyCalendar> mCalendar, Context mContext) {
+    public WkdyRecyclerAdapter(List<MyWkdyCalendar> mCalendar, MainFragment mContext) {
         this.mCalendar = mCalendar;
         this.mContext = mContext;
     }

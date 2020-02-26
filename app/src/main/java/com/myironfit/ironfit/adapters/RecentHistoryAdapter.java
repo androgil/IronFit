@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.myironfit.ironfit.R;
 import com.myironfit.ironfit.models.RecentHistory;
+import com.myironfit.ironfit.ui.MainFragment;
 
 import java.util.List;
 
@@ -21,7 +22,7 @@ public class RecentHistoryAdapter extends RecyclerView.Adapter<RecentHistoryAdap
     private static final String TAG = "RecentHistoryAdapter";
 
     private List<RecentHistory> mHistory;
-    private Context mContext;
+    private MainFragment mContext;
     private OnItemClickListener mListener;
 
 
@@ -84,7 +85,7 @@ public class RecentHistoryAdapter extends RecyclerView.Adapter<RecentHistoryAdap
     /**
      *  ---- RECYCLERVIEW ADAPTER ----
      */
-    public RecentHistoryAdapter(List<RecentHistory> mHistory, Context mContext) {
+    public RecentHistoryAdapter(List<RecentHistory> mHistory, MainFragment mContext) {
         this.mHistory = mHistory;
         this.mContext = mContext;
     }

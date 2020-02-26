@@ -1,0 +1,675 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/primaryColor"
+    android:id="@+id/fragment_main">
+
+    <ImageView
+        android:id="@+id/headerSurface"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:background="@drawable/gympic"
+        android:contentDescription="@string/gympic"
+        android:elevation="1dp"
+        android:foreground="@drawable/gympic"
+        android:visibility="visible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <TextView
+        android:id="@+id/dateTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:elevation="3dp"
+        android:fontFamily="@font/roboto_medium"
+        android:textColor="@color/primaryTextColor"
+        android:textSize="26sp"
+        app:layout_constraintBottom_toTopOf="@+id/weekdayRecycler"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:text="Date" />
+
+    <TextView
+        android:id="@+id/weekdayTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginBottom="2dp"
+        android:elevation="3dp"
+        android:fontFamily="@font/roboto_medium"
+        android:textColor="@color/primaryTextColor"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@+id/dateTextView"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:text="Day of Week" />
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/weekdayRecycler"
+        android:layout_width="match_parent"
+        android:layout_height="125dp"
+        android:layout_marginTop="200dp"
+        android:background="@color/secondaryColor"
+        android:elevation="2dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cvDailySchedule"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_marginStart="@dimen/card_side_margin"
+        android:layout_marginTop="86dp"
+        android:layout_marginEnd="@dimen/card_side_margin"
+        android:padding="@dimen/card_padding"
+        android:clipToPadding="false"
+        app:cardBackgroundColor="@color/lightCards"
+        app:cardCornerRadius="@dimen/card_corner_radius"
+        app:cardElevation="6dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/weekdayRecycler">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/iv_schedule_image"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:layout_marginStart="200dp"
+                android:rotation="45"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/todays_schedule" />
+
+            <TextView
+                android:id="@+id/tv_training_schedule"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:layout_marginTop="4dp"
+                android:fontFamily="@font/roboto_medium"
+                android:text="@string/schedule_cap"
+                android:textColor="@color/secondaryTextColor"
+                android:textSize="12sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <View
+                android:id="@+id/ts_divide_line"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_marginLeft="12dp"
+                android:layout_marginTop="1dp"
+                android:layout_marginRight="12dp"
+                android:background="@color/wkdRecyclerTextColor"
+                android:backgroundTint="@color/secondaryTextColor"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_training_schedule" />
+
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:visibility="gone"
+                android:id="@+id/add_session_fab"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:backgroundTint="#036F9F"
+                android:elevation="6dp"
+                android:src="@drawable/add_session"
+                app:borderWidth="0dp"
+                app:fabSize="mini"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/ts_divide_line"
+                app:maxImageSize="28dp"
+                app:pressedTranslationZ="8dp"
+                app:rippleColor="#74899C" />
+
+            <TextView
+                android:visibility="gone"
+                android:id="@+id/tv_todays_session"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:elevation="6dp"
+                android:fontFamily="@font/roboto_black"
+                android:text="@string/todays_schedule"
+                android:textColor="@color/alertTextColor"
+                android:textSize="24sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/add_session_fab"
+                app:layout_constraintTop_toBottomOf="@+id/ts_divide_line"
+                tools:text="No Scheduled Session" />
+
+            <!-- Views for days when there is scheduled training -->
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:visibility="visible"
+                android:id="@+id/start_session_fab"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:backgroundTint="#036F9F"
+                android:elevation="2dp"
+                android:src="@drawable/ic_start_session"
+                android:rotation="90"
+                app:borderWidth="0dp"
+                app:fabSize="mini"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/ts_divide_line"
+                app:maxImageSize="28dp"
+                app:pressedTranslationZ="8dp"
+                app:rippleColor="#74899C" />
+
+            <TextView
+                android:visibility="visible"
+                android:id="@+id/tv_start_session"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="12dp"
+                android:elevation="2dp"
+                android:fontFamily="@font/roboto_black"
+                android:text="@string/session"
+                android:textColor="@color/secondaryTextColor"
+                android:textSize="24sp"
+
+                app:layout_constraintStart_toEndOf="@+id/start_session_fab"
+
+                app:layout_constraintTop_toTopOf="@+id/ts_divide_line"
+                tools:text="Chest and Shoulders" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cvRecentHistory"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="@dimen/card_padding"
+        android:layout_marginStart="@dimen/card_side_margin"
+        android:layout_marginEnd="@dimen/card_side_margin"
+        android:clipToPadding="false"
+        android:padding="@dimen/card_padding"
+        app:cardBackgroundColor="@color/lightCards"
+        app:cardCornerRadius="@dimen/card_corner_radius"
+        app:cardElevation="6dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cvDailySchedule">
+
+
+        <!--  Layout for when there is no recent training history -->
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:visibility="gone"
+            android:id="@+id/cl_no_history"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/tv_recent_history1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:layout_marginTop="4dp"
+                android:fontFamily="@font/roboto_medium"
+                android:text="@string/rec_history"
+                android:textColor="@color/secondaryTextColor"
+                android:textSize="12sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <View
+                android:id="@+id/rh_divide_line1"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_marginLeft="12dp"
+                android:layout_marginTop="1dp"
+                android:layout_marginRight="12dp"
+                android:background="@color/wkdRecyclerTextColor"
+                android:backgroundTint="@color/secondaryTextColor"
+                android:elevation="4dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_recent_history1" />
+
+            <LinearLayout
+                android:id="@+id/no_recent_history"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:visibility="visible"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/rh_divide_line1">
+
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:contentDescription="@string/history_image"
+                    android:src="@drawable/ic_no_history" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="6dp"
+                    android:fontFamily="@font/roboto_medium"
+                    android:textColor="@color/darkTextColor"
+                    android:text="@string/no_history"
+                    android:textSize="18sp" />
+            </LinearLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        <!--  Layout for the recent history recycler view -->
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:visibility="gone"
+            android:id="@+id/cl_history_rv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/tv_recent_history"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:layout_marginTop="4dp"
+                android:fontFamily="@font/roboto_medium"
+                android:text="@string/rec_history"
+                android:textColor="@color/secondaryTextColor"
+                android:textSize="12sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <View
+                android:id="@+id/rh_divide_line"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_marginLeft="12dp"
+                android:layout_marginTop="1dp"
+                android:layout_marginRight="12dp"
+                android:background="@color/wkdRecyclerTextColor"
+                android:backgroundTint="@color/secondaryTextColor"
+                android:elevation="4dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_recent_history" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recentHistoryRecycler"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/primaryTextColor"
+                android:orientation="vertical"
+                android:visibility="visible"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/rh_divide_line" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <!--  Layout for the days that have planned training -->
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:visibility="visible"
+            android:id="@+id/cl_planned_summary"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/iv_training_summary"
+                android:layout_width="44dp"
+                android:layout_height="44dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:contentDescription="@string/iv_training_summary"
+                android:src="@drawable/ic_training_summary"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tv_planned_summary"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:fontFamily="@font/roboto_medium"
+                android:text="@string/training_summary"
+                android:textColor="@color/secondaryTextColor"
+                android:textSize="12sp"
+                app:layout_constraintStart_toEndOf="@id/iv_training_summary"
+                app:layout_constraintTop_toTopOf="@id/iv_training_summary" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:fontFamily="@font/roboto_medium"
+                android:text="@string/session"
+                android:textSize="20sp"
+                android:textColor="@color/darkTextColor"
+                app:layout_constraintBottom_toBottomOf="@id/iv_training_summary"
+                app:layout_constraintStart_toEndOf="@id/iv_training_summary" />
+
+            <View
+                android:id="@+id/pt_divide_line"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_marginLeft="12dp"
+                android:layout_marginTop="1dp"
+                android:layout_marginRight="12dp"
+                android:background="@color/wkdRecyclerTextColor"
+                android:backgroundTint="@color/secondaryTextColor"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/iv_training_summary" />
+            <TextView
+                android:id="@+id/tv_num_exercises"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:fontFamily="@font/roboto_black"
+                android:text="10"
+                android:textColor="@color/primaryLightColor"
+                android:textSize="24sp"
+                app:layout_constraintTop_toBottomOf="@id/pt_divide_line"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="@id/v_divide_line1"/>
+
+            <TextView
+                android:id="@+id/tv_ts_exercises"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto_medium"
+                android:text="@string/exercises"
+                android:textColor="@color/darkTextColor"
+                app:layout_constraintEnd_toEndOf="@id/v_divide_line1"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_num_exercises" />
+
+            <View
+                android:id="@+id/v_divide_line1"
+                android:layout_width="2dp"
+                android:layout_height="62dp"
+                android:layout_marginLeft="12dp"
+                android:layout_marginTop="2dp"
+                android:layout_marginRight="12dp"
+                android:background="@color/wkdRecyclerTextColor"
+                android:backgroundTint="@color/secondaryTextColor"
+                app:layout_constraintEnd_toEndOf="@id/v_divide_line2"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/pt_divide_line" />
+            <TextView
+                android:id="@+id/tv_num_sets"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:fontFamily="@font/roboto_black"
+                android:text="45"
+                android:textColor="@color/primaryLightColor"
+                android:textSize="24sp"
+                app:layout_constraintTop_toBottomOf="@id/pt_divide_line"
+                app:layout_constraintStart_toStartOf="@id/v_divide_line1"
+                app:layout_constraintEnd_toEndOf="@id/v_divide_line2"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto_medium"
+                android:text="@string/sets"
+                android:textColor="@color/darkTextColor"
+                app:layout_constraintEnd_toEndOf="@id/v_divide_line2"
+                app:layout_constraintStart_toStartOf="@id/v_divide_line1"
+                app:layout_constraintTop_toBottomOf="@id/tv_num_sets" />
+
+            <View
+                android:id="@+id/v_divide_line2"
+                android:layout_width="2dp"
+                android:layout_height="62dp"
+                android:layout_marginLeft="12dp"
+                android:layout_marginTop="2dp"
+                android:layout_marginRight="12dp"
+                android:background="@color/wkdRecyclerTextColor"
+                android:backgroundTint="@color/secondaryTextColor"
+                app:layout_constraintEnd_toEndOf="@id/v_divide_line3"
+                app:layout_constraintStart_toStartOf="@id/v_divide_line1"
+                app:layout_constraintTop_toBottomOf="@id/pt_divide_line" />
+            <TextView
+                android:id="@+id/tv_num_reps"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:fontFamily="@font/roboto_black"
+                android:text="320"
+                android:textColor="@color/primaryLightColor"
+                android:textSize="24sp"
+                app:layout_constraintTop_toBottomOf="@id/pt_divide_line"
+                app:layout_constraintStart_toStartOf="@id/v_divide_line2"
+                app:layout_constraintEnd_toEndOf="@id/v_divide_line3"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto_medium"
+                android:text="@string/total_reps"
+                android:textColor="@color/darkTextColor"
+                app:layout_constraintEnd_toEndOf="@id/v_divide_line3"
+                app:layout_constraintStart_toStartOf="@id/v_divide_line2"
+                app:layout_constraintTop_toBottomOf="@id/tv_num_reps" />
+
+
+            <View
+                android:id="@+id/v_divide_line3"
+                android:layout_width="2dp"
+                android:layout_height="62dp"
+                android:layout_marginLeft="12dp"
+                android:layout_marginTop="2dp"
+                android:layout_marginRight="12dp"
+                android:background="@color/wkdRecyclerTextColor"
+                android:backgroundTint="@color/secondaryTextColor"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@id/v_divide_line2"
+                app:layout_constraintTop_toBottomOf="@id/pt_divide_line" />
+
+            <TextView
+                android:id="@+id/tv_num_cardio"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:fontFamily="@font/roboto_black"
+                android:text=".25"
+                android:textColor="@color/primaryLightColor"
+                android:textSize="24sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@id/v_divide_line3"
+                app:layout_constraintTop_toBottomOf="@id/pt_divide_line" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto_medium"
+                android:text="@string/cardio"
+                android:textColor="@color/darkTextColor"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@id/v_divide_line3"
+                app:layout_constraintTop_toBottomOf="@id/tv_num_cardio" />
+
+            <!--  Begin big divider/header  -->
+
+            <View
+                android:id="@+id/v_big_divider"
+                android:layout_width="match_parent"
+                android:layout_height="26dp"
+                android:layout_marginTop="2dp"
+                android:layout_marginRight="12dp"
+                android:layout_marginLeft="12dp"
+                android:background="@color/secondaryColor"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/v_divide_line1"/>
+
+            <ImageView
+                android:id="@+id/iv_ts_exercise_list"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_exercise_list"
+                android:tint="@color/wkdRecyclerTextColor"
+                android:layout_marginStart="2dp"
+                android:layout_marginTop="1dp"
+                app:layout_constraintStart_toStartOf="@id/tv_ts_exercises"
+                app:layout_constraintTop_toTopOf="@id/v_big_divider"/>
+
+            <TextView
+                android:id="@+id/tv_ts_exercise_header"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:fontFamily="@font/roboto_medium"
+                android:text="@string/exercises_cap"
+                android:textColor="@color/wkdRecyclerTextColor"
+                android:textSize="18sp"
+                app:layout_constraintBottom_toBottomOf="@id/iv_ts_exercise_list"
+                app:layout_constraintStart_toEndOf="@id/iv_ts_exercise_list" />
+
+            <ImageView
+                android:id="@+id/iv_ts_muscles_list"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_target_muscles"
+                android:tint="@color/wkdRecyclerTextColor"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="1dp"
+                app:layout_constraintStart_toStartOf="@id/v_divide_line2"
+                app:layout_constraintTop_toTopOf="@id/v_big_divider"/>
+
+            <TextView
+                android:id="@+id/tv_ts_muscles_header"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:fontFamily="@font/roboto_medium"
+                android:text="@string/muscles_cap"
+                android:textColor="@color/wkdRecyclerTextColor"
+                android:textSize="18sp"
+                app:layout_constraintBottom_toBottomOf="@id/iv_ts_exercise_list"
+                app:layout_constraintStart_toEndOf="@id/iv_ts_muscles_list" />
+
+            <!-- End bid divider/header  -->
+
+            <TextView
+                android:id="@+id/tv_exercise_list1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:fontFamily="@font/roboto_medium"
+                android:text="@string/incline_dumbbell_press"
+                android:textColor="@color/primaryLightColor"
+                android:lines="1"
+                app:layout_constraintEnd_toStartOf="@id/v_divide_line2"
+                app:layout_constraintStart_toStartOf="@id/tv_ts_exercise_header"
+                app:layout_constraintTop_toBottomOf="@id/tv_ts_exercise_header" />
+
+            <TextView
+                android:id="@+id/tv_exercise_list2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:fontFamily="@font/roboto_medium"
+                android:text="@string/machine_dips"
+                android:textColor="@color/primaryLightColor"
+                app:layout_constraintStart_toStartOf="@id/tv_ts_exercise_header"
+                app:layout_constraintTop_toBottomOf="@id/tv_exercise_list1" />
+
+            <TextView
+                android:id="@+id/tv_exercise_list3"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:fontFamily="@font/roboto_medium"
+                android:text="@string/decline_dumbbell_press"
+                android:textColor="@color/primaryLightColor"
+                android:lines="1"
+                app:layout_constraintEnd_toStartOf="@id/v_divide_line2"
+                app:layout_constraintStart_toStartOf="@id/tv_ts_exercise_header"
+                app:layout_constraintTop_toBottomOf="@id/tv_exercise_list2" />
+
+            <TextView
+                android:id="@+id/tv_exercise_list4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:fontFamily="@font/roboto_medium"
+                android:text="@string/arnold_press"
+                android:textColor="@color/primaryLightColor"
+                app:layout_constraintStart_toStartOf="@id/tv_ts_exercise_header"
+                app:layout_constraintTop_toBottomOf="@id/tv_exercise_list3" />
+
+            <TextView
+                android:id="@+id/tv_exercise_list5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:fontFamily="@font/roboto_medium"
+                android:text="@string/peck_deck"
+                android:textColor="@color/primaryLightColor"
+                app:layout_constraintStart_toStartOf="@id/tv_ts_exercise_header"
+                app:layout_constraintTop_toBottomOf="@id/tv_exercise_list4" />
+
+            <TextView
+                android:id="@+id/tv_muscle_list1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:fontFamily="@font/roboto_medium"
+                android:text="@string/chest"
+                android:textColor="@color/primaryLightColor"
+                app:layout_constraintEnd_toEndOf="@id/v_big_divider"
+                app:layout_constraintStart_toStartOf="@id/tv_ts_muscles_header"
+                app:layout_constraintTop_toBottomOf="@id/tv_ts_muscles_header" />
+
+            <TextView
+                android:id="@+id/tv_muscle_list2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:fontFamily="@font/roboto_medium"
+                android:text="@string/triceps"
+                android:textColor="@color/primaryLightColor"
+                app:layout_constraintStart_toStartOf="@id/tv_ts_muscles_header"
+                app:layout_constraintTop_toBottomOf="@id/tv_muscle_list1" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </androidx.cardview.widget.CardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

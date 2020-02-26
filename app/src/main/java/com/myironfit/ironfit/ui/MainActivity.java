@@ -10,6 +10,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.LinearSnapHelper;
 import androidx.recyclerview.widget.RecyclerView;
@@ -59,27 +60,18 @@ public class MainActivity extends AppCompatActivity
         Toolbar mainToolbar = findViewById(R.id.main_toolbar);
         setSupportActionBar(mainToolbar);
 
-        //Setting current month day year date text view
-        String date_mdy = new SimpleDateFormat("MMM dd, YYYY", Locale.getDefault()).format(new Date());
-        TextView date = findViewById(R.id.dateTextView);
-        date.setText(date_mdy);
+        /**
+         *   ---- Handling the fragments ----
+         */
+        MainFragment mainFragment = new MainFragment();
 
-        //Setting current weekday text view
-        String date_wd = new SimpleDateFormat("EEEE", Locale.getDefault()).format(new Date());
-        TextView weekday = findViewById(R.id.weekdayTextView);
-        weekday.setText(date_wd);
+        FragmentManager fragmentManager = getSupportFragmentManager();
 
-        FloatingActionButton fab = findViewById(R.id.add_session_fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(getApplicationContext(),"FAB Pressed", Toast.LENGTH_SHORT).show();
-            }
-        });
+        fragmentManager.beginTransaction().add(R.id.main_fragment_container, mainFragment).commit();
 
 
         /**
-         * Sidebar or Drawer
+         *  --- Navigation Drawer  ----
          */
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -90,204 +82,7 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-
-        initWkdRecyclerView();
-        prepareCalendarData();
-
-        initRecHistRecyclerView();
-        prepareHistory();
     }
-
-    /**
-     *  ---- Select date function for the week day recyclerview ----
-     */
-    public void selectDate(final int position) {
-        int txtSelectColor = Color.parseColor("#0CAADC");
-        int visible = 0, invisible = 4;
-
-        /**
-        mWkdyRecyclerView.setItemAnimator(new DefaultItemAnimator());
-        TextView childTextView = mWkdyRecyclerView.findViewHolderForItemId(mWkdyAdapter.getItemId(position)).itemView.findViewById(R.id.weekDay);
-        Animation startRotateAnimation = AnimationUtils.makeInChildBottomAnimation(getApplicationContext());
-        childTextView.startAnimation(startRotateAnimation);
-         */
-
-        if (lastClickedPosition != position) {
-            calendarList.get(position).setTxtColor(txtSelectColor);
-            calendarList.get(position).setLnVisible(visible);
-            calendarList.get(lastClickedPosition).setTxtColor(Color.parseColor("#95989A"));
-            calendarList.get(lastClickedPosition).setLnVisible(invisible);
-
-            mWkdyAdapter.notifyItemChanged(position);
-            mWkdyAdapter.notifyItemChanged(lastClickedPosition);
-        }
-
-        lastClickedPosition = position;
-    }
-
-
-    /**
-     *  ---- Scroll to center function for the week day recyclerview  ----
-     */
-    public void scrollToCenter(View v){
-        int itemToScroll = mWkdyRecyclerView.getChildLayoutPosition(v);
-        int centerOfScreen = mWkdyRecyclerView.getWidth() / 2 - v.getWidth() / 2;
-
-        if(itemToScroll < 3) {
-            mLayoutManager.scrollToPosition(itemToScroll -3);
-        }
-
-    }
-
-
-    /**
-     *  ---- Horizontal weekday recycler view initialization ----
-     */
-
-    private void initWkdRecyclerView(){
-        Log.d(TAG, "initWkdRecyclerView: init recyclerview");
-
-        mLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
-        mWkdyRecyclerView = findViewById(R.id.weekdayRecycler);
-        mWkdyRecyclerView.setLayoutManager(mLayoutManager);
-        mWkdyRecyclerView.setHasFixedSize(true);
-        mWkdyAdapter = new WkdyRecyclerAdapter(calendarList, this);
-        snapHelper = new LinearSnapHelper();
-        snapHelper.attachToRecyclerView(mWkdyRecyclerView);
-        //mWkdyRecyclerView.setItemAnimator(new DefaultItemAnimator());
-        mWkdyRecyclerView.setAdapter(mWkdyAdapter);
-
-        mWkdyAdapter.setOnClickListener(new WkdyRecyclerAdapter.OnItemClickListener() {
-            @Override
-            public void onItemClick(int position, View v) {
-                selectDate(position);
-                scrollToCenter(v);
-            }
-        });
-
-        /**
-        // Item Click Listener
-        mWkdyRecyclerView.addOnItemTouchListener(new WkdRecyclerTouchListener(getApplicationContext(), mWkdyRecyclerView, new WkdRecyclerTouchListener.ClickListener() {
-            @Override
-            public void onClick(View view, int position) {
-                MyWkdyCalendar calendar = calendarList.get(position);
-                int pos = position;
-                TextView childTextView = view.findViewById(R.id.weekDay);
-                ImageView childImageView = view.findViewById(R.id.dateSelectedLine);
-                Animation startRotateAnimation = AnimationUtils.makeInChildBottomAnimation(getApplicationContext());
-
-
-                if (lastClickedPosition != pos)
-                    childTextView.startAnimation(startRotateAnimation);
-                    childTextView.setTextColor(Color.CYAN);
-                    childImageView.setVisibility(View.VISIBLE);
-                    mWkdyAdapter.notifyItemChanged(lastClickedPosition);
-                    lastClickedPosition = pos;
-
-
-                Toast.makeText(getApplicationContext(), calendar.getDay() + " is selected!", Toast.LENGTH_SHORT).show();
-            }
-
-            @Override
-            public void onLongClick(View view, int position) {
-
-            }
-        }));
-         */
-
-    }
-
-    /**
-     *  ---- Recent History Recycler view initialization ----
-     */
-
-    private void initRecHistRecyclerView(){
-        Log.d(TAG, "initRecHistRecyclerView: init recyclerview");
-
-        hLayoutManager = new LinearLayoutManager(this);
-        mRecentHistoryRecycler = findViewById(R.id.recentHistoryRecycler);
-        mRecentHistoryRecycler.setLayoutManager(hLayoutManager);
-        mRecentHistoryRecycler.setHasFixedSize(true);
-        mHistoryAdapter = new RecentHistoryAdapter(historyList, this);
-        mRecentHistoryRecycler.setAdapter(mHistoryAdapter);
-
-
-        /**
-         // Item Click Listener
-         mWkdyRecyclerView.addOnItemTouchListener(new WkdRecyclerTouchListener(getApplicationContext(), mWkdyRecyclerView, new WkdRecyclerTouchListener.ClickListener() {
-        @Override
-        public void onClick(View view, int position) {
-        MyWkdyCalendar calendar = calendarList.get(position);
-        int pos = position;
-        TextView childTextView = view.findViewById(R.id.weekDay);
-        ImageView childImageView = view.findViewById(R.id.dateSelectedLine);
-        Animation startRotateAnimation = AnimationUtils.makeInChildBottomAnimation(getApplicationContext());
-
-
-        if (lastClickedPosition != pos)
-        childTextView.startAnimation(startRotateAnimation);
-        childTextView.setTextColor(Color.CYAN);
-        childImageView.setVisibility(View.VISIBLE);
-        mWkdyAdapter.notifyItemChanged(lastClickedPosition);
-        lastClickedPosition = pos;
-
-
-        Toast.makeText(getApplicationContext(), calendar.getDay() + " is selected!", Toast.LENGTH_SHORT).show();
-        }
-
-        @Override
-        public void onLongClick(View view, int position) {
-
-        }
-        }));
-         */
-
-    }
-
-
-    /**
-     *  ---- Prepares sample data to provide data set to adapter ----
-     */
-    private void prepareCalendarData() {
-
-        // run a for loop for all the next 30 days of the current month starting today
-        // initialize mycalendarData and get Instance
-        // getnext to get next set of date etc.. which can be used to populate MyCalendarList in for loop
-
-        myCalendarData m_calendar = new myCalendarData(-3);
-
-        for ( int i=0; i <30; i++) {
-            int txtColor = Color.parseColor("#95989A");
-            MyWkdyCalendar calendar = new MyWkdyCalendar(m_calendar.getWeekDay(), String.valueOf(m_calendar.getDay()), String.valueOf(m_calendar.getMonth()), String.valueOf(m_calendar.getYear()),i, txtColor, 4);
-            m_calendar.getNextWeekDay(1);
-
-            calendarList.add(calendar);
-
-        }
-
-        // notify adapter about data set changes
-        // so that it will render the list with new data
-
-        mWkdyAdapter.notifyDataSetChanged();
-    }
-
-    /**
-     *   ---- Insert fake history data ----
-     */
-    private void prepareHistory(){
-
-        for (int i=0; i < 10; i++){
-            RecentHistory history = new RecentHistory("Wed", "22", "Feb", "Chest & Shoulders", "Chest, Deltoids, Triceps", "12 Exercises", "2:13:21" );
-            historyList.add(history);
-        }
-
-        mHistoryAdapter.notifyDataSetChanged();
-
-    }
-
-    /***
-     *    ---- Floating Action Button ----
-     */
 
 
 
@@ -329,7 +124,7 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
+        if (id == R.id.nav_home) {
             // Handle the camera action
         } else if (id == R.id.nav_gallery) {
 
