@@ -172,36 +172,6 @@ public class MainFragment extends Fragment {
             }
         });
 
-        /**
-         // Item Click Listener
-         mWkdyRecyclerView.addOnItemTouchListener(new WkdRecyclerTouchListener(getApplicationContext(), mWkdyRecyclerView, new WkdRecyclerTouchListener.ClickListener() {
-        @Override
-        public void onClick(View view, int position) {
-        MyWkdyCalendar calendar = calendarList.get(position);
-        int pos = position;
-        TextView childTextView = view.findViewById(R.id.weekDay);
-        ImageView childImageView = view.findViewById(R.id.dateSelectedLine);
-        Animation startRotateAnimation = AnimationUtils.makeInChildBottomAnimation(getApplicationContext());
-
-
-        if (lastClickedPosition != pos)
-        childTextView.startAnimation(startRotateAnimation);
-        childTextView.setTextColor(Color.CYAN);
-        childImageView.setVisibility(View.VISIBLE);
-        mWkdyAdapter.notifyItemChanged(lastClickedPosition);
-        lastClickedPosition = pos;
-
-
-        Toast.makeText(getApplicationContext(), calendar.getDay() + " is selected!", Toast.LENGTH_SHORT).show();
-        }
-
-        @Override
-        public void onLongClick(View view, int position) {
-
-        }
-        }));
-         */
-
     }
 
     /**
@@ -218,37 +188,6 @@ public class MainFragment extends Fragment {
         mHistoryAdapter = new RecentHistoryAdapter(historyList, this);
         mRecentHistoryRecycler.setAdapter(mHistoryAdapter);
 
-
-        /**
-         // Item Click Listener
-         mWkdyRecyclerView.addOnItemTouchListener(new WkdRecyclerTouchListener(getApplicationContext(), mWkdyRecyclerView, new WkdRecyclerTouchListener.ClickListener() {
-        @Override
-        public void onClick(View view, int position) {
-        MyWkdyCalendar calendar = calendarList.get(position);
-        int pos = position;
-        TextView childTextView = view.findViewById(R.id.weekDay);
-        ImageView childImageView = view.findViewById(R.id.dateSelectedLine);
-        Animation startRotateAnimation = AnimationUtils.makeInChildBottomAnimation(getApplicationContext());
-
-
-        if (lastClickedPosition != pos)
-        childTextView.startAnimation(startRotateAnimation);
-        childTextView.setTextColor(Color.CYAN);
-        childImageView.setVisibility(View.VISIBLE);
-        mWkdyAdapter.notifyItemChanged(lastClickedPosition);
-        lastClickedPosition = pos;
-
-
-        Toast.makeText(getApplicationContext(), calendar.getDay() + " is selected!", Toast.LENGTH_SHORT).show();
-        }
-
-        @Override
-        public void onLongClick(View view, int position) {
-
-        }
-        }));
-         */
-
     }
 
 
@@ -256,10 +195,6 @@ public class MainFragment extends Fragment {
      *  ---- Prepares sample data to provide data set to adapter ----
      */
     private void prepareCalendarData() {
-
-        // run a for loop for all the next 30 days of the current month starting today
-        // initialize mycalendarData and get Instance
-        // getnext to get next set of date etc.. which can be used to populate MyCalendarList in for loop
 
         myCalendarData m_calendar = new myCalendarData(-3);
 
@@ -269,11 +204,7 @@ public class MainFragment extends Fragment {
             m_calendar.getNextWeekDay(1);
 
             calendarList.add(calendar);
-
         }
-
-        // notify adapter about data set changes
-        // so that it will render the list with new data
 
         mWkdyAdapter.notifyDataSetChanged();
     }
